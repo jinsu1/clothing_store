@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <title>clothing_store</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body {
+            line-height: 1.5;
+            font-size:15px;
+            font-family: Verdana, sans-serif;
+        }
+
+        body, h1, h2, h3, h4, h5, h6, p, .font_mont {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .pd_8_16 {
+            padding: 8px 16px;
+        }
+
+        .sale_price {
+            color:#f44336;
+            filter: saturate(0.3);
+        }
+
+        .icon_pd {
+            padding-left: 5px;
+            font-size: 16px;
+            transform: translateY(-10%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+
+
+            .sidebar {
+                position: fixed;
+                width: 250px;
+                height: 100vh;
+                z-index: 3;
+
+                .logo_box {
+                    width: 100%;
+                    height:88px;
+                    padding:16px;
+                    display:flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                 
+                    .logo {
+                    letter-spacing: 4px;
+                    font-size: 24px;
+                    font-weight:500;
+                    }
+                }
+                
+                .nav_container {
+                    width:100%;
+                    height: 429px;
+                    padding:64px 0;
+
+                    a {
+                        display:flex;
+                        align-items: center;
+                        font-family: "Roboto", sans-serif;
+                        font-size: 18px;
+                        font-weight: bold;
+                        width:100%;
+                        height:43px;
+                        text-decoration: none;
+                        color: #757575;
+                        letter-spacing: -0.005em;
+
+                        &:hover {
+                            background-color: #ccc;
+                            color:#000;
+                        }
+
+                        &.active {
+                            color: #000;
+                        }
+                    } 
+                }
+                
+                .side_link {
+                    display:block;
+                    width:100%;
+                    height:38.5px;
+                    text-decoration: none;
+                    color: #000;
+                    font-family: "Roboto", sans-serif;
+
+                    &:hover {
+                            background-color: #ccc;
+                    }
+                }
+            }
+
+            .main {
+                width:950px;
+                margin-left:250px;
+                padding: 0 16px;
+
+                .header {
+                    width:100%;
+                    height:84.47px;
+                    display:flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .category_title{
+                        font-family: "Montserrat", sans-serif;
+                        font-size: 24px;
+                    }
+
+                    i {
+                        font-size:22px;
+                        padding-left:15px;
+                    }
+                }
+
+                .banner {
+                    position: relative;
+
+                    img {
+                        width:100%;
+                    }
+
+                    .banner_content_container {
+                        position:absolute;
+                        top:0;
+                        left:0;
+                        padding: 22px 32px;
+
+                        .banner_content_title {
+                            color: #fff;
+                            font-size: 64px;
+                            font-weight:400;
+                            margin: 10px 0;
+                        }
+
+                        .banner_content_desc {
+                            color: #fff;
+                            font-size: 36px;
+                            font-weight:400;
+                            margin:10px 0;
+                        }
+
+                        .banner_content_button {
+                            display:inline-block;
+                            background-color:#000;
+                            color:#fff;
+                            font-size: 18px;
+                            padding: 12px 24px;
+                            cursor: pointer;
+                            margin-top: 8px;
+
+                            &:hover {
+                                background-color: #ccc;
+                                color: #000;
+                            }
+                        }
+                    }
+                }
+
+                .item_num {
+                    display: inline-block;
+                    margin: 9.5px 0 16px 0;
+                    color: #757575;
+                    font-size:15px;
+                }
+
+                .item_container {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    justify-content: space-between;
+
+                    .item_box {
+                        display: flex;
+                        flex-direction: column;
+                        position:relative;
+                        width: 205px;
+                        height: 332px;
+
+                        img {
+                            filter: saturate(0.3);
+                        }
+
+                        .item_top_mark {
+                            position:absolute;
+                            top: 0;
+                            left: 0;
+                            display:block;
+                            background-color: #000;
+                            color: #fff;
+                            padding: 0 8px;
+                        }
+
+                        .item_box_title {
+                            margin-top: 15px;
+                            font-weight:300;
+                        }
+
+                        .item_box_price {
+                            margin-bottom: 15px;
+                            font-weight: 600;
+                        }
+                    }
+                }
+
+                .subscribe_container {
+                    background-color: #000;
+                    padding: 32px 16px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .subscribe_title {
+                        color: #fff;
+                        font-size: 36px;
+                        font-weight: 400;
+                        margin: 10px 0;
+                    }
+
+                    .subscribe_desc {
+                        color: #fff;
+                        margin: 15px 0;
+                    }
+
+                    .subscribe_input {
+                        padding: 8px;
+                        height: 40px;
+                        font: inherit;
+                    }
+
+                    .subscribe_button {
+                        padding: 8px 16px;
+
+                        font-size: 15px;
+                        color: #fff;
+                        background-color: #f44336;
+                        margin: 16px 0;
+                        width: 106px;
+
+                        &:hover {
+                            color: #000;
+                            background-color: #ccc;
+                        }
+                    }
+                }
+
+                /* footer */
+                .footer {
+                    height: 520px;
+
+                    .footer_contents {
+                        height: 450px;
+                        padding: 64px 8px;
+                        background-color: #f1f1f1;
+                        display: flex;
+
+                        .contact, .about, .etc {
+                            padding: 0 8px;
+                            width:33%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            
+                            .contact_title, .about_title, .etc_title {
+                                font-size:20px;
+                                margin: 10px 0;
+                                font-weight: 400;
+                            }
+
+                            .contact_desc {
+                                font-size: 12px;
+                                margin-bottom: 12px;
+                            }
+
+                            .contact_input {
+                                padding: 8px;
+                                width: 100%;
+                                margin-bottom: 12px;
+                                border: 1px solid #ccc;
+                                font: inherit;
+                                font-size:12px;
+                            }
+
+                            .contact_button {
+                                color: #fff;
+                                background-color: #000;
+                                font-size: 12px;
+                                padding: 8px 16px;
+                                width: 100%;
+
+                                &:hover {
+                                    color: #000;
+                                    background-color: #ccc;
+                                    border: none;
+                                }
+                            }
+
+                            a {
+                                color: #000;
+                                font-size: 12px;
+                                margin-bottom: 12px;
+                            }
+                        }
+
+                        .etc {
+                            align-items: flex-start;
+
+                            p {
+                                font-size: 12px;
+                                margin-bottom: 12px;
+
+                                i {
+                                    margin-right: 5px;
+                                }
+                            }
+
+                            .icon_box {
+                                display:flex;
+
+                                i {
+                                margin-right: 3px;
+                                font-size:18px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .copyright {
+                    background-color: #000;
+                    color: #fff;
+                    height:70px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    a {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- left area -->
+        <div class="sidebar">
+            <h3 class="logo_box">
+                <b class="logo">LOGO</b>
+            </h3>
+
+            <!-- navigation -->
+            <div class="nav_container">
+                <a href="#" class="pd_8_16">Shirts</a>
+                <a href="#" class="pd_8_16">Dresses</a>
+                <a href="#" class="active pd_8_16">Jeans<i class="fas fa-caret-down icon_pd"></i></a>
+                <a href="#" class="pd_8_16">Jackets</a>
+                <a href="#" class="pd_8_16">Gymwear</a>
+                <a href="#" class="pd_8_16">Blazers</a>
+                <a href="#" class="pd_8_16">Shoes</a>
+            </div>
+            <a href="#footer" class="side_link pd_8_16">Contact</a>
+            <a href="#" class="side_link pd_8_16">Newsletter</a>
+            <a href="#footer" class="side_link pd_8_16">Subscribe</a>
+        </div>
+
+        <!-- right area -->
+        <div class="main">
+
+            <!-- header -->
+            <div class="header">
+                <span class="category_title">Jeans</span>
+                <div class="icon_menu_box">
+                    <i class="fas fa-cart-shopping"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+
+            <!-- banner -->
+            <div class="banner">
+                <img src="assets/imgs/banner.jpg" alt="banner" />
+                <div class="banner_content_container">
+                    <h1 class="banner_content_title">New arrivals</h1>
+                    <h1 class="banner_content_desc">COLLECTION 2016</h1>
+                    <a href="#jeans" class="banner_content_button font_mont">SHOP NOW</a>
+                </div>
+            </div>
+
+            <!-- main contents -->
+            <di id="jeans" class="item_num_container">
+                <span class="item_num">8 items</span>
+            </di>
+
+            <div class="item_container">
+                <div class="item_box">
+                    <img src="assets/imgs/jeans1.jpg" alt="jeans1" />
+                    <p class="item_box_title">Ripped Skinny Jeans</p>
+                    <p class="item_box_price">$24.99</p>
+                </div>
+                <div class="item_box">
+                    <img src="assets/imgs/jeans2.jpg" alt="jeans2" />
+                    <span class="item_top_mark">New</span>
+                    <p class="item_box_title">Mega Ripped Jeans</p>
+                    <p class="item_box_price">$19.99</p>
+                </div>
+                <div class="item_box">
+                    <img src="assets/imgs/jeans3.jpg" alt="jeans3" />
+                    <p class="item_box_title">Washed Skinny Jeans</p>
+                    <p class="item_box_price">$20.50</p>
+                </div>
+                <div class="item_box">
+                    <img src="assets/imgs/jeans4.jpg" alt="jean4" />
+                    <p class="item_box_title">Vintage Skinny Jeans</p>
+                    <p class="item_box_price">$14.99</p>
+                </div>
+            </div>
+
+            <div class="item_container">
+                <div class="item_box">
+                    <img src="assets/imgs/jeans5.jpg" alt="jeans5" />
+                    <p class="item_box_title">Mega Ripped Jeans</p>
+                    <p class="item_box_price">$19.99</p>
+                </div>
+                <div class="item_box">
+                    <img src="assets/imgs/jeans6.jpg" alt="jeans6" />
+                    <p class="item_box_title">Washed Skinny Jeans</p>
+                    <p class="item_box_price">$20.50</p>
+                </div>
+                <div class="item_box">
+                    <img src="assets/imgs/jeans7.jpg" alt="jeans7" />
+                    <span class="item_top_mark">Sale</span>
+                    <p class="item_box_title">Vintage Skinny Jeans</p>
+                    <p class="item_box_price sale_price">$14.99</p>
+                </div>
+                <div class="item_box">
+                    <img src="assets/imgs/jeans8.jpg" alt="jean8" />
+                    <p class="item_box_title">Ripped Skinny Jeans</p>
+                    <p class="item_box_price">$24.99</p>
+                </div>
+            </div>
+
+            <!-- subscribe -->
+            <div class="subscribe_container">
+                <h1 class="subscribe_title">Subscribe</h1>
+                <p class="subscribe_desc">To get special offers and VIP treatment:</p>
+                <input type="text" placeholder="Enter e-mail" class="subscribe_input" />
+                <button type="button" class="subscribe_button font_mont">Subscribe</button>
+            </div>
+
+            <!-- footer -->
+            <div id="footer" class="footer">
+                <div class="footer_contents">
+                    <div class="contact">
+                        <h4 class="contact_title">Contact</h4>
+                        <p class="contact_desc">Questions? Go ahead.</p>
+                        <input type="text" placeholder="Name" class="contact_input" />
+                        <input type="text" placeholder="Email" class="contact_input" />
+                        <input type="text" placeholder="Subject" class="contact_input" />
+                        <input type="text" placeholder="Message" class="contact_input" />
+                        <button type="button" class="contact_button font_mont">Send</button>
+                    </div>
+                    <div class="about">
+                        <h4 class="about_title">About</h4>
+                        <a href="#">About us</a>
+                        <a href="#">We're hiring</a>
+                        <a href="#">Support</a>
+                        <a href="#">Find store</a>
+                        <a href="#">Shipment</a>
+                        <a href="#">Payment</a>
+                        <a href="#">Gift card</a>
+                        <a href="#">Return</a>
+                        <a href="#">Help</a>
+                    </div>
+                    <div class="etc">
+                        <h4 class="etc_title">Store</h4>
+                        <p><i class="fa-solid fa-location-dot"></i>Company Name</p>
+                        <p><i class="fas fa-phone"></i>0044123123</p>
+                        <p><i class="fas fa-envelope"></i>ex@mail.com</p>
+                        <h4 class="etc_title">We accept</h4>
+                        <p><i class="fab fa-cc-amex"></i>Amex</p>
+                        <p><i class="fas fa-credit-card"></i>Credit Card</p>
+                        <br />
+                        <div class="icon_box">
+                            <i class="fab fa-facebook-square"></i>
+                            <i class="fab fa-instagram"></i>
+                            <i class="fab fa-snapchat-square"></i>
+                            <i class="fab fa-pinterest-p"></i>
+                            <i class="fab fa-twitter"></i>
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>Powered by&nbsp;</p>
+                    <a href="https://www.w3schools.com/w3css/default.as">w3.css</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
